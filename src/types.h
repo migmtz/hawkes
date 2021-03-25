@@ -258,7 +258,7 @@ struct HaarBase final : Base {
  * Kernels.
  */
 
-// Interval kernel : 1_[0, width](x) (L2-normalized)
+// Interval kernel : 1_[0, width](x) (L1-normalized)
 struct IntervalKernel {
     PointSpace width; // ]0, inf[ due to the normalization factor
 
@@ -267,7 +267,7 @@ struct IntervalKernel {
     static std::string name() { return "interval[0,w]"; }
 };
 inline double normalization_factor(IntervalKernel kernel) {
-    return 1. / std::sqrt(kernel.width);
+    return 1. / double(kernel.width);
 }
 
 // Zero width kernels are not supported by computation, replace their width with a 'default' value.
